@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "SmartMenu - Smart ordering website",
   "scripts": {
-    "build": "echo 'No build needed - static site'"
+    "build": "mkdir -p dist && cp -r index.html admin.html css js _headers _redirects dist/"
   }
 }
