@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMenu - Order Fresh</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>SmartMenu</span>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="#menu" class="nav-link active">Menu</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-right">
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <a href="admin.html" class="admin-link" title="Admin Panel">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fresh & Delicious<br><span class="highlight">Made to Order</span></h1>
+                <p>Explore our carefully crafted menu and order your favorites with just a few taps.</p>
+                <a href="#menu" class="btn btn-primary">Browse Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="categories" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="category-filter" id="categoryFilter">
+                <button class="category-btn active" data-category="all">All</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Grid -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be dynamically loaded -->
+            </div>
+            <div class="empty-state" id="emptyState" style="display:none;">
+                <i class="fas fa-search"></i>
+                <p>No items found in this category</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="cart-close" id="cartClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty" id="cartEmpty">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty</p>
+                <span>Add items from the menu to get started</span>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (10%)</span>
+                    <span id="cartTax">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">
+                <i class="fas fa-check"></i> Place Order
+            </button>
+        </div>
+    </aside>
+
+    <!-- Order Success Modal -->
+    <div class="modal-overlay" id="orderModal" style="display:none;">
+        <div class="modal">
+            <div class="modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Order Placed!</h3>
+            <p>Your order <strong id="orderNumber"></strong> has been received.</p>
+            <p class="modal-sub">Estimated preparation time: <strong>15-20 minutes</strong></p>
+            <button class="btn btn-primary" id="orderModalClose">Done</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-utensils"></i>
+                        <span>SmartMenu</span>
+                    </div>
+                    <p>Fresh ingredients, crafted with love.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Hours</h4>
+                    <p>Mon - Fri: 8AM - 10PM</p>
+                    <p>Sat - Sun: 9AM - 11PM</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> hello@smartmenu.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SmartMenu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

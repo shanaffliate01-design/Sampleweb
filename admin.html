@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMenu - Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <span>SmartMenu</span>
+            </div>
+            <span class="badge">Admin</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link active" data-section="dashboard">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="sidebar-link" data-section="menu-items">
+                <i class="fas fa-hamburger"></i>
+                <span>Menu Items</span>
+            </a>
+            <a href="#" class="sidebar-link" data-section="orders">
+                <i class="fas fa-receipt"></i>
+                <span>Orders</span>
+            </a>
+            <a href="#" class="sidebar-link" data-section="categories">
+                <i class="fas fa-tags"></i>
+                <span>Categories</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="sidebar-link">
+                <i class="fas fa-external-link-alt"></i>
+                <span>View Store</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h2 class="page-title" id="pageTitle">Dashboard</h2>
+            <div class="topbar-right">
+                <span class="admin-user">
+                    <i class="fas fa-user-circle"></i> Admin
+                </span>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="admin-section active" id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statRevenue">$0.00</span>
+                        <span class="stat-label">Total Revenue</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e0f2fe; color: #0284c7;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statOrders">0</span>
+                        <span class="stat-label">Total Orders</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--warning-light); color: var(--warning);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statPending">0</span>
+                        <span class="stat-label">Pending Orders</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--success-light); color: var(--success);">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statItems">0</span>
+                        <span class="stat-label">Menu Items</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <h3>Recent Orders</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTable">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="empty-table" id="dashEmptyOrders">
+                        <i class="fas fa-inbox"></i>
+                        <p>No orders yet</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Items Section -->
+        <section class="admin-section" id="section-menu-items">
+            <div class="section-header">
+                <h3>Menu Items</h3>
+                <button class="btn btn-primary btn-sm" id="addItemBtn">
+                    <i class="fas fa-plus"></i> Add Item
+                </button>
+            </div>
+            <div class="admin-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="menuItemsTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Orders Section -->
+        <section class="admin-section" id="section-orders">
+            <div class="section-header">
+                <h3>All Orders</h3>
+                <div class="filter-group">
+                    <select id="orderStatusFilter" class="form-select">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="preparing">Preparing</option>
+                        <option value="ready">Ready</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="admin-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTable">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="empty-table" id="ordersEmpty">
+                        <i class="fas fa-inbox"></i>
+                        <p>No orders found</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="admin-section" id="section-categories">
+            <div class="section-header">
+                <h3>Categories</h3>
+            </div>
+            <div class="categories-grid" id="categoriesGrid">
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Item Modal -->
+    <div class="modal-overlay" id="itemModal" style="display:none;">
+        <div class="modal modal-form">
+            <div class="modal-header">
+                <h3 id="itemModalTitle">Add Menu Item</h3>
+                <button class="cart-close" id="itemModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="itemForm">
+                <input type="hidden" id="itemId">
+                <div class="form-group">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" class="form-input" id="itemName" required placeholder="e.g., Classic Burger">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" id="itemDesc" rows="3" required placeholder="Brief description of the item"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Price ($)</label>
+                        <input type="number" class="form-input" id="itemPrice" step="0.01" min="0" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Emoji Icon</label>
+                        <input type="text" class="form-input" id="itemEmoji" required placeholder="🍔">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <input type="text" class="form-input" id="itemCategory" required placeholder="e.g., Burgers, Pizza, Drinks" list="categoryList">
+                    <datalist id="categoryList"></datalist>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        <input type="checkbox" id="itemAvailable" checked>
+                        Available for ordering
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="itemFormCancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal" style="display:none;">
+        <div class="modal">
+            <div class="modal-icon" style="background: var(--danger-light); color: var(--danger);">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3>Delete Item?</h3>
+            <p>This action cannot be undone. The item will be permanently removed from the menu.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="deleteCancel">Cancel</button>
+                <button class="btn btn-danger" id="deleteConfirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
