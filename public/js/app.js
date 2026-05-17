@@ -372,7 +372,49 @@ class SmartMenuApp {
     }
 }
 
+// ===== SCROLL REVEAL ANIMATION (IntersectionObserver) =====
+function initScrollReveal() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-revealed');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    // Observe all menu cards
+    function observeCards() {
+        const cards = document.querySelectorAll('.menu-card');
+        cards.forEach(card => {
+            if (!card.classList.contains('scroll-revealed')) {
+                observer.observe(card);
+            }
+        });
+    }
+
+    // Initial observation
+    observeCards();
+
+    // Re-observe when menu is re-rendered (category change)
+    const menuGrid = document.getElementById('menuGrid');
+    if (menuGrid) {
+        const mutationObserver = new MutationObserver(() => {
+            // Small delay to let DOM settle after re-render
+            setTimeout(observeCards, 50);
+        });
+        mutationObserver.observe(menuGrid, { childList: true });
+    }
+}
+
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
     new SmartMenuApp();
+    initScrollReveal();
 });
