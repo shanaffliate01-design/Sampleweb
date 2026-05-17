@@ -24,6 +24,9 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <div class="header-right">
+                <button class="cart-btn" id="trackOrderBtn" title="Track Order">
+                    <i class="fas fa-clipboard-list"></i>
+                </button>
                 <button class="cart-btn" id="cartBtn">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
@@ -148,6 +151,26 @@
             <p class="order-type-confirm"><i class="fas fa-tag"></i> <span id="orderTypeDisplay"></span></p>
             <p class="modal-sub">Estimated preparation time: <strong>15-20 minutes</strong></p>
             <button class="btn btn-primary" id="orderModalClose">Done</button>
+        </div>
+    </div>
+
+    <!-- Order Tracker -->
+    <div class="modal-overlay" id="trackerModal" style="display:none;">
+        <div class="modal modal-tracker">
+            <div class="modal-header" style="border:none; padding-bottom:0;">
+                <h3 style="margin:0;">Order Status</h3>
+                <button class="cart-close" id="trackerClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="trackerContent" style="padding: 0 28px 28px;">
+                <div class="tracker-empty" id="trackerEmpty">
+                    <i class="fas fa-receipt"></i>
+                    <p>No recent orders</p>
+                    <span>Place an order to track it here</span>
+                </div>
+                <div id="trackerOrders"></div>
+            </div>
         </div>
     </div>
 

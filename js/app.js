@@ -271,6 +271,12 @@ class SmartMenuApp {
             document.getElementById('orderModal').style.display = 'none';
         });
 
+        // Order tracker
+        document.getElementById('trackOrderBtn').addEventListener('click', () => this.openTracker());
+        document.getElementById('trackerClose').addEventListener('click', () => {
+            document.getElementById('trackerModal').style.display = 'none';
+        });
+
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -281,6 +287,72 @@ class SmartMenuApp {
                 }
             });
         });
+    }
+
+    // ===== ORDER TRACKER =====
+    openTracker() {
+        const orders = dataStore.getOrders();
+        const trackerOrders = document.getElementById('trackerOrders');
+        const trackerEmpty = document.getElementById('trackerEmpty');
+
+        if (orders.length === 0) {
+            trackerEmpty.style.display = 'block';
+            trackerOrders.innerHTML = '';
+        } else {
+            trackerEmpty.style.display = 'none';
+            trackerOrders.innerHTML = orders.slice(0, 5).map(order => this.renderTrackerOrder(order)).join('');
+        }
+
+        document.getElementById('trackerModal').style.display = 'flex';
+    }
+
+    renderTrackerOrder(order) {
+        const steps = ['pending', 'preparing', 'ready', 'completed'];
+        const currentIndex = steps.indexOf(order.status);
+        const progressWidth = currentIndex === 0 ? '0%' : currentIndex === 1 ? '33%' : currentIndex === 2 ? '66%' : '100%';
+
+        const stepIcons = ['fa-clock', 'fa-fire-burner', 'fa-bell', 'fa-check'];
+        const stepLabels = ['Pending', 'Preparing', 'Ready', 'Done'];
+
+        const orderTypeLabels = { 'dine-in': '🍽️ Dine In', 'delivery': '🚗 Delivery', 'takeout': '🥡 Take Out' };
+        const typeLabel = orderTypeLabels[order.orderType] || '';
+
+        const timeAgo = this.formatTimeAgo(order.timestamp);
+        const itemsSummary = order.items.map(i => `${i.name} x${i.qty}`).join(', ');
+
+        return `
+            <div class="tracker-order">
+                <div class="tracker-order-header">
+                    <span class="tracker-order-id">${order.id}</span>
+                    <span class="tracker-order-time">${timeAgo}</span>
+                </div>
+                ${typeLabel ? `<div class="tracker-order-type">${typeLabel}</div>` : ''}
+                <div class="tracker-steps">
+                    <div class="tracker-progress" style="width: ${progressWidth};"></div>
+                    ${steps.map((step, i) => `
+                        <div class="tracker-step ${i < currentIndex ? 'completed' : ''} ${i === currentIndex ? 'active' : ''}">
+                            <div class="tracker-step-icon">
+                                <i class="fas ${i <= currentIndex ? (i < currentIndex ? 'fa-check' : stepIcons[i]) : stepIcons[i]}"></i>
+                            </div>
+                            <span class="tracker-step-label">${stepLabels[i]}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="tracker-items-summary">
+                    ${itemsSummary} &mdash; <strong>$${order.total.toFixed(2)}</strong>
+                </div>
+            </div>
+        `;
+    }
+
+    formatTimeAgo(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diff = now - date;
+        if (diff < 60000) return 'Just now';
+        if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+        if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 }
 
