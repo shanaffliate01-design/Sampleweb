@@ -123,12 +123,21 @@ const DEFAULT_MENU_ITEMS = [
 ];
 
 // ===== DATA MANAGEMENT =====
+const MENU_VERSION = '2.0'; // Bump this to force refresh default items
+
 class DataStore {
     constructor() {
         this.init();
     }
 
     init() {
+        // Force refresh if menu version changed (e.g., images added)
+        const storedVersion = localStorage.getItem('smartmenu_version');
+        if (storedVersion !== MENU_VERSION) {
+            localStorage.removeItem('smartmenu_items');
+            localStorage.setItem('smartmenu_version', MENU_VERSION);
+        }
+
         if (!localStorage.getItem('smartmenu_items')) {
             localStorage.setItem('smartmenu_items', JSON.stringify(DEFAULT_MENU_ITEMS));
         }
