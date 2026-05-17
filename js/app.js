@@ -183,6 +183,14 @@ class SmartMenuApp {
     checkout() {
         if (this.cart.length === 0) return;
 
+        // Show order type selection modal first
+        this.toggleCart(false);
+        document.getElementById('orderTypeModal').style.display = 'flex';
+    }
+
+    placeOrder(orderType) {
+        document.getElementById('orderTypeModal').style.display = 'none';
+
         const subtotal = this.getCartTotal();
         const tax = subtotal * 0.10;
         const total = subtotal + tax;
@@ -196,17 +204,23 @@ class SmartMenuApp {
             })),
             subtotal,
             tax,
-            total
+            total,
+            orderType
         });
 
         // Show success modal
         document.getElementById('orderNumber').textContent = order.id;
+        document.getElementById('orderTypeDisplay').textContent = this.getOrderTypeLabel(orderType);
         document.getElementById('orderModal').style.display = 'flex';
 
         // Clear cart
         this.cart = [];
         this.updateCartUI();
-        this.toggleCart(false);
+    }
+
+    getOrderTypeLabel(type) {
+        const labels = { 'dine-in': 'Dine In', 'delivery': 'Delivery', 'takeout': 'Take Out' };
+        return labels[type] || type;
     }
 
     // ===== CART TOGGLE =====
@@ -234,6 +248,20 @@ class SmartMenuApp {
 
         // Checkout
         document.getElementById('checkoutBtn').addEventListener('click', () => this.checkout());
+
+        // Order type selection
+        document.querySelectorAll('.order-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.type;
+                this.placeOrder(type);
+            });
+        });
+
+        // Order type modal cancel
+        document.getElementById('orderTypeCancel').addEventListener('click', () => {
+            document.getElementById('orderTypeModal').style.display = 'none';
+            this.toggleCart(true);
+        });
 
         // Order modal close
         document.getElementById('orderModalClose').addEventListener('click', () => {

@@ -91,6 +91,7 @@ class AdminPanel {
                 <td>${order.items.map(i => i.name).join(', ')}</td>
                 <td>$${order.total.toFixed(2)}</td>
                 <td><span class="status-badge status-${order.status}">${this.capitalize(order.status)}</span></td>
+                <td>${order.orderType ? `<span class="order-type-tag">${this.getOrderTypeLabel(order.orderType)}</span>` : '-'}</td>
                 <td>${this.formatTime(order.timestamp)}</td>
             </tr>
         `).join('');
@@ -263,6 +264,7 @@ class AdminPanel {
                 <td>${order.items.map(i => `${i.name} x${i.qty}`).join(', ')}</td>
                 <td>$${order.total.toFixed(2)}</td>
                 <td><span class="status-badge status-${order.status}">${this.capitalize(order.status)}</span></td>
+                <td>${order.orderType ? `<span class="order-type-tag">${this.getOrderTypeLabel(order.orderType)}</span>` : '-'}</td>
                 <td>${this.formatTime(order.timestamp)}</td>
                 <td>
                     <select class="status-select" data-order-id="${order.id}" ${order.status === 'completed' ? 'disabled' : ''}>
@@ -320,6 +322,11 @@ class AdminPanel {
     // ===== UTILITIES =====
     capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    getOrderTypeLabel(type) {
+        const labels = { 'dine-in': '🍽️ Dine In', 'delivery': '🚗 Delivery', 'takeout': '🥡 Take Out' };
+        return labels[type] || type;
     }
 
     formatTime(timestamp) {

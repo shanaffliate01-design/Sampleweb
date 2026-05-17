@@ -106,6 +106,37 @@
         </div>
     </aside>
 
+    <!-- Order Type Selection Modal -->
+    <div class="modal-overlay" id="orderTypeModal" style="display:none;">
+        <div class="modal modal-order-type">
+            <div class="modal-icon" style="background: var(--primary-light); color: var(--primary);">
+                <i class="fas fa-concierge-bell"></i>
+            </div>
+            <h3>How would you like your order?</h3>
+            <p>Select your preferred order type</p>
+            <div class="order-type-options">
+                <button class="order-type-btn" data-type="dine-in">
+                    <div class="order-type-icon">🍽️</div>
+                    <span class="order-type-label">Dine In</span>
+                    <span class="order-type-desc">Enjoy at the restaurant</span>
+                </button>
+                <button class="order-type-btn" data-type="delivery">
+                    <div class="order-type-icon">🚗</div>
+                    <span class="order-type-label">Delivery</span>
+                    <span class="order-type-desc">Delivered to your door</span>
+                </button>
+                <button class="order-type-btn" data-type="takeout">
+                    <div class="order-type-icon">🥡</div>
+                    <span class="order-type-label">Take Out</span>
+                    <span class="order-type-desc">Pick up at counter</span>
+                </button>
+            </div>
+            <button class="btn btn-secondary btn-block" id="orderTypeCancel" style="margin-top: 16px;">
+                <i class="fas fa-arrow-left"></i> Back to Cart
+            </button>
+        </div>
+    </div>
+
     <!-- Order Success Modal -->
     <div class="modal-overlay" id="orderModal" style="display:none;">
         <div class="modal">
@@ -114,6 +145,7 @@
             </div>
             <h3>Order Placed!</h3>
             <p>Your order <strong id="orderNumber"></strong> has been received.</p>
+            <p class="order-type-confirm"><i class="fas fa-tag"></i> <span id="orderTypeDisplay"></span></p>
             <p class="modal-sub">Estimated preparation time: <strong>15-20 minutes</strong></p>
             <button class="btn btn-primary" id="orderModalClose">Done</button>
         </div>

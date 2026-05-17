@@ -572,3 +572,18 @@ textarea.form-input {
         grid-template-columns: 1fr;
     }
 }
+
+
+
+/* ===== ORDER TYPE TAG ===== */
+.order-type-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--gray-100);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
