@@ -270,11 +270,27 @@ class SmartMenuApp {
         document.getElementById('orderModalClose').addEventListener('click', () => {
             document.getElementById('orderModal').style.display = 'none';
         });
+        document.getElementById('orderModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('orderModal')) {
+                document.getElementById('orderModal').style.display = 'none';
+            }
+        });
+        document.getElementById('orderTypeModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('orderTypeModal')) {
+                document.getElementById('orderTypeModal').style.display = 'none';
+                this.toggleCart(true);
+            }
+        });
 
         // Order tracker
         document.getElementById('trackOrderBtn').addEventListener('click', () => this.openTracker());
         document.getElementById('trackerClose').addEventListener('click', () => {
             document.getElementById('trackerModal').style.display = 'none';
+        });
+        document.getElementById('trackerModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('trackerModal')) {
+                document.getElementById('trackerModal').style.display = 'none';
+            }
         });
 
         // Smooth scroll for nav links
