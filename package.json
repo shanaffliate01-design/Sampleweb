@@ -1,0 +1,11 @@
+{
+  "name": "sampleweb09",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler versions upload"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
