@@ -333,6 +333,23 @@ body {
     font-size: 3rem;
 }
 
+img.menu-card-image {
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.menu-card:hover img.menu-card-image {
+    transform: scale(1.05);
+}
+
+.menu-card-image.menu-card-emoji {
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+}
+
+.menu-card {
+    overflow: hidden;
+}
+
 .menu-card-body {
     padding: 20px;
     flex: 1;

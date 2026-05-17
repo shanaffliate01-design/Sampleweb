@@ -180,6 +180,7 @@ class AdminPanel {
         document.getElementById('itemDesc').value = item.description;
         document.getElementById('itemPrice').value = item.price;
         document.getElementById('itemEmoji').value = item.emoji;
+        document.getElementById('itemImage').value = item.image || '';
         document.getElementById('itemCategory').value = item.category;
         document.getElementById('itemAvailable').checked = item.available;
 
@@ -206,6 +207,7 @@ class AdminPanel {
             description: document.getElementById('itemDesc').value.trim(),
             price: parseFloat(document.getElementById('itemPrice').value),
             emoji: document.getElementById('itemEmoji').value.trim(),
+            image: document.getElementById('itemImage').value.trim() || '',
             category: document.getElementById('itemCategory').value.trim(),
             available: document.getElementById('itemAvailable').checked
         };

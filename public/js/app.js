@@ -56,7 +56,10 @@ class SmartMenuApp {
 
         grid.innerHTML = filtered.map(item => `
             <div class="menu-card" data-id="${item.id}">
-                <div class="menu-card-image">${item.emoji}</div>
+                ${item.image 
+                    ? `<img class="menu-card-image" src="${item.image}" alt="${item.name}" loading="lazy">`
+                    : `<div class="menu-card-image menu-card-emoji">${item.emoji}</div>`
+                }
                 <div class="menu-card-body">
                     <span class="menu-card-category">${item.category}</span>
                     <h3 class="menu-card-title">${item.name}</h3>

@@ -7,6 +7,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 12.99,
         category: "Burgers",
         emoji: "🍔",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -16,6 +17,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 14.99,
         category: "Pizza",
         emoji: "🍕",
+        image: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -25,6 +27,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 9.99,
         category: "Salads",
         emoji: "🥗",
+        image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -34,6 +37,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 22.99,
         category: "Mains",
         emoji: "🐟",
+        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -43,6 +47,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 15.99,
         category: "Pasta",
         emoji: "🍝",
+        image: "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -52,6 +57,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 11.99,
         category: "Starters",
         emoji: "🍗",
+        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -61,6 +67,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 16.99,
         category: "Mains",
         emoji: "🍄",
+        image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -70,6 +77,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 13.99,
         category: "Mains",
         emoji: "🌮",
+        image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -79,6 +87,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 8.99,
         category: "Desserts",
         emoji: "🍰",
+        image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -88,6 +97,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 10.99,
         category: "Beverages",
         emoji: "🫐",
+        image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -97,6 +107,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 5.99,
         category: "Beverages",
         emoji: "☕",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&h=400&fit=crop",
         available: true
     },
     {
@@ -106,6 +117,7 @@ const DEFAULT_MENU_ITEMS = [
         price: 7.99,
         category: "Starters",
         emoji: "🍟",
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop",
         available: true
     }
 ];
