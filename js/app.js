@@ -1,5 +1,5 @@
 // ===== MAIN APPLICATION =====
-class SmartMenuApp {
+class MonoCafeApp {
     constructor() {
         this.cart = [];
         this.currentCategory = 'all';
@@ -415,6 +415,6 @@ function initScrollReveal() {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
-    new SmartMenuApp();
+    new MonoCafeApp();
     initScrollReveal();
 });

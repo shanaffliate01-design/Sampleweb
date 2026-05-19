@@ -132,25 +132,25 @@ class DataStore {
 
     init() {
         // Force refresh if menu version changed (e.g., images added)
-        const storedVersion = localStorage.getItem('smartmenu_version');
+        const storedVersion = localStorage.getItem('monocafe_version');
         if (storedVersion !== MENU_VERSION) {
-            localStorage.removeItem('smartmenu_items');
-            localStorage.setItem('smartmenu_version', MENU_VERSION);
+            localStorage.removeItem('monocafe_items');
+            localStorage.setItem('monocafe_version', MENU_VERSION);
         }
 
-        if (!localStorage.getItem('smartmenu_items')) {
-            localStorage.setItem('smartmenu_items', JSON.stringify(DEFAULT_MENU_ITEMS));
+        if (!localStorage.getItem('monocafe_items')) {
+            localStorage.setItem('monocafe_items', JSON.stringify(DEFAULT_MENU_ITEMS));
         }
-        if (!localStorage.getItem('smartmenu_orders')) {
-            localStorage.setItem('smartmenu_orders', JSON.stringify([]));
+        if (!localStorage.getItem('monocafe_orders')) {
+            localStorage.setItem('monocafe_orders', JSON.stringify([]));
         }
-        if (!localStorage.getItem('smartmenu_next_id')) {
-            localStorage.setItem('smartmenu_next_id', '13');
+        if (!localStorage.getItem('monocafe_next_id')) {
+            localStorage.setItem('monocafe_next_id', '13');
         }
     }
 
     getMenuItems() {
-        return JSON.parse(localStorage.getItem('smartmenu_items')) || [];
+        return JSON.parse(localStorage.getItem('monocafe_items')) || [];
     }
 
     getAvailableItems() {
@@ -158,14 +158,14 @@ class DataStore {
     }
 
     saveMenuItems(items) {
-        localStorage.setItem('smartmenu_items', JSON.stringify(items));
+        localStorage.setItem('monocafe_items', JSON.stringify(items));
     }
 
     addMenuItem(item) {
         const items = this.getMenuItems();
-        const nextId = parseInt(localStorage.getItem('smartmenu_next_id'));
+        const nextId = parseInt(localStorage.getItem('monocafe_next_id'));
         item.id = nextId;
-        localStorage.setItem('smartmenu_next_id', (nextId + 1).toString());
+        localStorage.setItem('monocafe_next_id', (nextId + 1).toString());
         items.push(item);
         this.saveMenuItems(items);
         return item;
@@ -194,7 +194,7 @@ class DataStore {
 
     // Orders
     getOrders() {
-        return JSON.parse(localStorage.getItem('smartmenu_orders')) || [];
+        return JSON.parse(localStorage.getItem('monocafe_orders')) || [];
     }
 
     addOrder(order) {
@@ -203,7 +203,7 @@ class DataStore {
         order.timestamp = new Date().toISOString();
         order.status = 'pending';
         orders.unshift(order);
-        localStorage.setItem('smartmenu_orders', JSON.stringify(orders));
+        localStorage.setItem('monocafe_orders', JSON.stringify(orders));
         return order;
     }
 
@@ -212,7 +212,7 @@ class DataStore {
         const index = orders.findIndex(o => o.id === orderId);
         if (index !== -1) {
             orders[index].status = status;
-            localStorage.setItem('smartmenu_orders', JSON.stringify(orders));
+            localStorage.setItem('monocafe_orders', JSON.stringify(orders));
         }
     }
 
